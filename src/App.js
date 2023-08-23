@@ -1,10 +1,11 @@
 
-import './App.css';
+import ListPage from "pages/listPage/listPage";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-     hi
+      <ListPage></ListPage>
     </div>
   );
 }
