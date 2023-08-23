@@ -1,0 +1,40 @@
+.listing-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.listing-cards-container .listing-card {
+  min-width: 20%;
+  min-height: 250px;
+  border-radius: 10px;
+  box-shadow: var(--lightGray) 0px 1px 3px, var(--lightGray) 0px 1px 2px;
+}
+
+.listing-cards-container .listing-card .listing-poster {
+  height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+.listing-cards-container .listing-card .title-rating-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.listing-cards-container .listing-card .title-rating-container .listing-title {
+  font-size: 14px;
+  color: red;
+}
+.listing-cards-container
+  .listing-card
+  .title-rating-container
+  .listing-ratings {
+}
+.listing-cards-container .listing-card .listing-description {
+  font-size: 14px;
+  padding: 10px;
+}
