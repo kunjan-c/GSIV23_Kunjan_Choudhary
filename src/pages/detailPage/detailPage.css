@@ -1,0 +1,39 @@
+.detail-page-container {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  overflow: hidden;
+}
+
+.detail-page-container .mov-poster {
+  width: 200px;
+  height: 180px;
+}
+.detail-page-container .movie-details-container {
+    padding: 10px;
+}
+.detail-page-container .movie-details-container .mov-info {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 18px;
+
+}
+.detail-page-container .movie-details-container .cast-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 20%;
+  font-size: 18px;
+
+}
+.detail-page-container
+  .movie-details-container
+  .mov-info
+  .movie-info-second-line-container {
+  display: flex;
+  justify-content: space-between;
+  min-width: 300px;
+}
+.detail-page-container .movie-details-container .mov-info .mov-second-line-details {
+  padding: 10px;
+}

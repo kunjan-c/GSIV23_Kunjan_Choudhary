@@ -73,8 +73,8 @@ export default function ListingCard() {
         .then((jsonRes) => {
           console.log(jsonRes);
           setIsLoading(false);
-          setUpcomingMovieList(jsonRes.results);
-          dispatch(genralSiceActions.listData(jsonRes.results));
+          // setUpcomingMovieList(jsonRes.results);
+          // dispatch(genralSiceActions.listData(jsonRes.results));
           return jsonRes;
         });
     } catch (error) {
@@ -94,6 +94,10 @@ export default function ListingCard() {
     }
   };
 
+  const onCardClickHandler = (id) => {
+    console.log(id);
+    dispatch(genralSiceActions.clickedCardId(id));
+  }
   return (
     <>
       <div className="listing-cards-container">
@@ -102,7 +106,7 @@ export default function ListingCard() {
         ) : (
           upcomingMovieList.map((movie) => {
             return (
-              <div className="listing-card">
+              <div className="listing-card" onClick={()=>onCardClickHandler(movie.id)}>
                 <img
                   className="listing-poster"
                   src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
