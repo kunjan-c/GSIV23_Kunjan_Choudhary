@@ -1,0 +1,11 @@
+
+.primary-btn-Container .primaryBtn{
+    padding: 10p 20px;
+    min-width: 60px;
+    background-color: plum;
+    min-width: 150px;
+    border-radius: 10px;
+    margin: 5px;
+    min-height: 30px;
+    font-size: 14px;
+}
