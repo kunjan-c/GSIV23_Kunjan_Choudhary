@@ -4,9 +4,11 @@ import Loader from "component/loader/loader";
 import PrimaryBtn from "component/buttons/primaryBtn/primaryBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { genralSiceActions } from "redux/store";
+import { useNavigate } from "react-router";
 
 export default function ListingCard() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const clickedSearchTerm  = useSelector((state) => state.data.searchTermValue);
   console.log(clickedSearchTerm);
   const listData  = useSelector((state) => state.data.listData);
@@ -97,6 +99,7 @@ export default function ListingCard() {
   const onCardClickHandler = (id) => {
     console.log(id);
     dispatch(genralSiceActions.clickedCardId(id));
+    navigate("detail-page")
   }
   return (
     <>

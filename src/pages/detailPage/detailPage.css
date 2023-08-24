@@ -6,25 +6,36 @@
 }
 
 .detail-page-container .mov-poster {
-  width: 200px;
-  height: 180px;
+  width: 20%;
+  height: 250px;
 }
 .detail-page-container .movie-details-container {
-    padding: 10px;
+    padding: 15px;
+    width: 75%;
+}
+.detail-page-container .movie-details-container .details-rating-text{
+  color: var(--lightGray);
+  padding: 0px 10px;
 }
 .detail-page-container .movie-details-container .mov-info {
   display: flex;
   justify-content: flex-start;
   font-size: 18px;
+  padding: 5px;
 
+}
+.detail-page-container .movie-details-container .mov-info .divider-line{
+  font-size: 25px;
+  font-weight: 900;
+  padding: 3px;
 }
 .detail-page-container .movie-details-container .cast-name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 20%;
+  width: 40%;
   font-size: 18px;
-
+  padding: 5px;
 }
 .detail-page-container
   .movie-details-container

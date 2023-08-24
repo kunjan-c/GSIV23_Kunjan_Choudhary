@@ -4,5 +4,5 @@ export default function minsToHrConverter(n) {
   var rhours = Math.floor(hours);
   var minutes = (hours - rhours) * 60;
   var rminutes = Math.round(minutes);
-  return `${rhours}: ${rminutes}`;
+  return `${rhours} : ${rminutes}`;
 }

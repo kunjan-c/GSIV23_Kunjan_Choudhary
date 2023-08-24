@@ -57,13 +57,13 @@ export default function DetailPage() {
           alt={clickedCardMovieDetail?.title}
         ></img>
         <div className="movie-details-container">
-          <div className="mov-info">{`${clickedCardMovieDetail?.title}(${clickedCardMovieDetail?.vote_average})`}</div>
+          <div className="mov-info"><span>{clickedCardMovieDetail?.title}</span><span className="details-rating-text">{`(${Math.round(clickedCardMovieDetail?.vote_average * 10)/10})`}</span></div>
           <div className="mov-info">
             <div className="">
               <span>{(clickedCardMovieDetail?.release_date)?.split("-")[0]}</span>
-              <span> | </span>
+              <span className="divider-line"> | </span>
               <span className="mov-second-line-details">{minsToHrConverter(clickedCardMovieDetail?.runtime)}</span>
-              <span>|</span>
+              <span className="divider-line"> | </span>
               <span className="mov-second-line-details">
                 {clickedCardMovieDetail?.credits &&
                   clickedCardMovieDetail?.credits?.crew?.map((cr) =>
