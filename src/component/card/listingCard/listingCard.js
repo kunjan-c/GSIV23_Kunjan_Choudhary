@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./listingCard.css";
+import Loader from "component/loader/loader";
 export default function ListingCard() {
   const [isLoading, setIsLoading] = useState(false);
   const [upcomingMovieList, setUpcomingMovieList] = useState([]);
@@ -40,15 +41,15 @@ export default function ListingCard() {
   return (
     <div className="listing-cards-container">
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader></Loader>
       ) : (
         upcomingMovieList.map((movie) => {
-          console.log(movie.poster_path.split("/")[1]);
           return (
             <div className="listing-card">
               <img
                 className="listing-poster"
                 src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
               ></img>
               <div className="title-rating-container">
                 <div className="listing-title">{movie.title}</div>
