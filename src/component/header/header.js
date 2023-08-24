@@ -1,16 +1,24 @@
 import SearchBar from "component/searchBar/searchBar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./header.css";
+import { genralSiceActions } from "redux/store";
+import { useDispatch } from "react-redux";
+
 export default function Header() {
+  const dispatch = useDispatch();
 
-  const onSearchInputChange = (event) => {
-    console.log(event.target.value);
+  const onSearchKeyDown = (event) => {
+    if (event.code === "Enter" && event.target.value !== "") {
+      dispatch(genralSiceActions.searchTermValue(event.target.value));
+    }
+  };
 
-  }
   return (
     <div className="header-container">
-      <SearchBar onSearchInputChange={onSearchInputChange}></SearchBar>
-      <span className="material-symbols-outlined header-home-icon material-icons md-30 ">home</span>
+      <SearchBar onKeyDown={onSearchKeyDown}></SearchBar>
+      <span className="material-symbols-outlined header-home-icon material-icons md-30 ">
+        home
+      </span>
     </div>
   );
 }

@@ -2,14 +2,27 @@ import React, { useEffect, useState } from "react";
 import "./listingCard.css";
 import Loader from "component/loader/loader";
 import PrimaryBtn from "component/buttons/primaryBtn/primaryBtn";
+import { useDispatch, useSelector } from "react-redux";
+import { genralSiceActions } from "redux/store";
 
 export default function ListingCard() {
+  const dispatch = useDispatch();
+  const clickedSearchTerm  = useSelector((state) => state.data.searchTermValue);
+  console.log(clickedSearchTerm);
+  const listData  = useSelector((state) => state.data.listData);
+  
   const [isLoading, setIsLoading] = useState(false);
   const [upcomingMovieList, setUpcomingMovieList] = useState([]);
   const [pagination, setPagination] = useState(1);
   useEffect(() => {
     getUpcomingMovieList();
   }, [pagination]);
+
+  useEffect(()=>{
+    getSearchedTermData()
+  },[clickedSearchTerm])
+
+
 
   async function getUpcomingMovieList() {
     setIsLoading(true);
@@ -30,6 +43,7 @@ export default function ListingCard() {
         .then((jsonRes) => {
           console.log(jsonRes);
           setUpcomingMovieList(jsonRes.results);
+          dispatch(genralSiceActions.listData(jsonRes.results));
           setIsLoading(false);
           return jsonRes;
         });
@@ -39,6 +53,37 @@ export default function ListingCard() {
       setIsLoading(false);
     }
   }
+
+  //this will show Search Term Related Data
+  async function getSearchedTermData() {
+    setIsLoading(true);
+    try {
+      const listingKey = `${process.env.REACT_APP_LISTING_API_KEY}`;
+      console.log(listingKey);
+      const getData = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${clickedSearchTerm}&api_key=${process.env.REACT_APP_LISTING_API_KEY}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((jsonRes) => {
+          console.log(jsonRes);
+          setIsLoading(false);
+          setUpcomingMovieList(jsonRes.results);
+          dispatch(genralSiceActions.listData(jsonRes.results));
+          return jsonRes;
+        });
+    } catch (error) {
+      console.log(error);
+      alert("Internal Server Error");
+      setIsLoading(false);
+    }
+  }
+
 
   //this will handle pagination update
   const onPaginationBtnClickHandler = (e) => {
