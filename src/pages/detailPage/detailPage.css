@@ -13,9 +13,14 @@
     padding: 15px;
     width: 75%;
 }
+/* .detail-page-container .movie-details-container .mov-detail-title{
+color: var(--gray);
+} */
+
 .detail-page-container .movie-details-container .details-rating-text{
   color: var(--lightGray);
   padding: 0px 10px;
+  font-size: 20px;
 }
 .detail-page-container .movie-details-container .mov-info {
   display: flex;
@@ -23,10 +28,17 @@
   font-size: 18px;
   padding: 5px;
 
+
+}
+.detail-page-container .movie-details-container .mov-detail-title{
+font-size: 20px;
+}
+.mov-info-gray{
+  color: var(--gray);
 }
 .detail-page-container .movie-details-container .mov-info .divider-line{
   font-size: 25px;
-  font-weight: 900;
+  font-weight: 500;
   padding: 3px;
 }
 .detail-page-container .movie-details-container .cast-name {
@@ -36,6 +48,7 @@
   width: 40%;
   font-size: 18px;
   padding: 5px;
+  color: var(--gray);
 }
 .detail-page-container
   .movie-details-container
