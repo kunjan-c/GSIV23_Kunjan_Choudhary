@@ -7,7 +7,7 @@
 
 .detail-page-container .mov-poster {
   width: 25%;
-  height: 250px;
+  height: auto;
 }
 .detail-page-container .movie-details-container {
   padding: 15px;
