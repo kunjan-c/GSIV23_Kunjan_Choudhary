@@ -49,6 +49,9 @@ Implemented error handling using logs and warnings for effective troubleshooting
 * Helper Functions:
 Organized a dedicated helper folder to store reusable functions and data.
 
+* Responsive Design: 
+Developed a responsive design to ensure the application functions and looks appropriately across various devices.
+Used CSS media queries and responsive techniques to adapt the layout and styling based on different screen sizes and orientations.
 
 
 
