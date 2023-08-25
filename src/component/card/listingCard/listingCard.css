@@ -1,0 +1,77 @@
+.listing-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.listing-cards-container .listing-card {
+  margin: 12px;
+  width: 250px;
+  min-height: 300px;
+  max-height: 350px;
+  border-radius: 10px;
+  box-shadow: var(--lightGray) 0px 1px 3px, var(--lightGray) 0px 1px 2px;
+}
+
+.listing-cards-container .listing-card .listing-poster {
+  height: 200px;
+  width: 100%;
+  padding: 0px 2px;
+  border-radius: 10px;
+  border: none;
+}
+.listing-cards-container .listing-card .title-rating-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+}
+.listing-cards-container .listing-card .title-rating-container .listing-title {
+  font-size: 18px;
+  color: var(--gray);
+  overflow-wrap: anywhere;
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.listing-cards-container
+  .listing-card
+  .title-rating-container
+  .listing-ratings {
+  font-size: 14px;
+  color: var(--lightGray);
+}
+/* For modern browsers */
+.listing-cards-container .listing-card .desc-info-container .clamped-text {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* For older browsers (WebKit-based browsers like Safari) */
+.listing-cards-container .listing-card .desc-info-container .clamped-text  {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 3em; /* Adjust based on font size and desired number of lines */
+}
+
+.listing-cards-container .listing-card .desc-info-container{
+padding: 5px;
+}
+.pagination-btns-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
