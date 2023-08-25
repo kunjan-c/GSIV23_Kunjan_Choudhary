@@ -3,7 +3,7 @@
   flex-direction: row;
   width: 98%;
   overflow: hidden;
-  
+
 }
 
 .detail-page-container .mov-poster {
@@ -12,7 +12,7 @@
   object-fit: fill;
 }
 .detail-page-container .movie-details-container {
-  padding: 20px;
+  padding: 5px;
   width: 70%;
   min-height: 250px;
 }
@@ -64,4 +64,20 @@
   .mov-info
   .mov-second-line-details {
   padding: 10px;
+}
+.movie-details-container .mov-detail-desc{
+  padding: 5px;
+  font-size: 18px;
+  color: var(--gray);
+}
+@media only screen and (max-width: 600px) {
+  .movie-details-container .mov-detail-desc{
+    padding: 5px;
+    font-size: 14px;
+  }
+  .detail-page-container .movie-details-container .mov-info,
+  .detail-page-container .movie-details-container .details-rating-text,
+  .detail-page-container .movie-details-container .cast-name {
+    font-size: 14px;
+  }
 }

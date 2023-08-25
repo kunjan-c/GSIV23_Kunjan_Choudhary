@@ -95,7 +95,7 @@ export default function DetailPage() {
                     return c.name;
                   })}`}{" "}
                 </div>
-                <div className="mov-info mov-detail-desc mov-info-gray">
+                <div className=" mov-detail-desc mov-info-gray">
                   {clickedCardMovieDetail.overview}
                 </div>
               </div>
