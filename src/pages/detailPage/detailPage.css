@@ -3,6 +3,7 @@
   flex-direction: row;
   width: 98%;
   overflow: hidden;
+  
 }
 
 .detail-page-container .mov-poster {
@@ -12,7 +13,7 @@
 }
 .detail-page-container .movie-details-container {
   padding: 20px;
-  width: 60%;
+  width: 70%;
   min-height: 250px;
 }
 .detail-page-container .movie-details-container .mov-detail-title {
