@@ -4,7 +4,7 @@ GSynergy Interview Challagne For Softwear Engineer POsition
 
 # Live Link :
 
-https://kunjan-reactjs-code-challenge2.netlify.app/
+
 
 
 # Technologies Used:
