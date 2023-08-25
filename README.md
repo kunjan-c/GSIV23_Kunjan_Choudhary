@@ -1,5 +1,19 @@
-API KEY : e775d9d385ca8f76409a2109ba8ad621
+# Project Title :
 
-API Read Access Token :
-eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzc1ZDlkMzg1Y2E4Zjc2NDA5YTIxMDliYThhZDYyMSIsInN1YiI6IjY0ZTY0Y2I2MDZmOTg0MDBjYTU0MzlmZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.04UAMm8aaZXdsRCo8qmpzAzxs_2KRUDosFtybkGAsGA
+GSynergy Interview Challagne For Softwear Engineer POsition
 
+# Live Link :
+
+https://kunjan-reactjs-code-challenge2.netlify.app/
+
+
+# Technologies Used:
+
+I have Implement the app as a PWA APP by using following technologies React.js,Redux-toolkit,React-router,CSS,JavaScript
+
+
+
+# Local Setup
+download or clone the repository
+run npm install
+then run npm start
