@@ -1,7 +1,7 @@
 import Header from "component/header/header";
 import React, { useEffect, useState } from "react";
 import "./detailPage.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import minsToHrConverter from "helper/minsToHrConverter";
 import { useNavigate } from "react-router";
 import Loader from "component/loader/loader";
@@ -9,6 +9,7 @@ import { genralSiceActions } from "redux/store";
 
 export default function DetailPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [clickedCardMovieDetail, setClickedCardMovieDetail] = useState({});
   const clickedCardId = useSelector((state) => state.data.clickedCardId);
@@ -17,10 +18,10 @@ export default function DetailPage() {
     if (clickedCardId) {
       getClickedMovieCardDetail();
     } else {
+      dispatch(genralSiceActions.clickedCardId(null));
       navigate("/");
     }
   }, [clickedCardId]);
-
 
   //This Fn will Call API with movie ID to fetch specific movie detail
   async function getClickedMovieCardDetail() {
@@ -50,14 +51,12 @@ export default function DetailPage() {
     }
   }
 
-
-
   return (
     <>
       {isLoading ? (
         <Loader></Loader>
       ) : (
-        clickedCardMovieDetail && (
+        clickedCardId && clickedCardMovieDetail && (
           <div>
             <Header></Header>
             <div className="detail-page-container">
@@ -107,4 +106,3 @@ export default function DetailPage() {
     </>
   );
 }
-
