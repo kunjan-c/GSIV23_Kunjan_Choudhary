@@ -14,7 +14,6 @@ export default function ListingCard() {
   const [upcomingMovieList, setUpcomingMovieList] = useState([]);
   const clickedSearchTerm = useSelector((state) => state.data.searchTermValue);
 
-
   useEffect(() => {
     getUpcomingMovieList();
   }, [pagination]);
@@ -27,7 +26,6 @@ export default function ListingCard() {
       setPagination(1);
     }
   }, [clickedSearchTerm]);
-
 
   //this fn will call API and fetch upcoming movie data
   async function getUpcomingMovieList() {
@@ -46,7 +44,9 @@ export default function ListingCard() {
         .then((res) => res.json())
         .then((jsonRes) => {
           console.log(jsonRes.results);
-          const sortedMovieDataByLatestReleaseDate = jsonRes.results.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+          const sortedMovieDataByLatestReleaseDate = jsonRes.results.sort(
+            (a, b) => new Date(b.release_date) - new Date(a.release_date)
+          );
           setUpcomingMovieList(sortedMovieDataByLatestReleaseDate);
           dispatch(genralSiceActions.listData(jsonRes.results));
           setIsLoading(false);
@@ -63,7 +63,6 @@ export default function ListingCard() {
   async function getSearchedTermData() {
     setIsLoading(true);
     try {
-    
       const getData = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${clickedSearchTerm}&api_key=${process.env.REACT_APP_LISTING_API_KEY}`,
         {
@@ -116,7 +115,7 @@ export default function ListingCard() {
                   upcomingMovieList.map((movie) => {
                     return (
                       <div
-                      key={movie.id}
+                        key={movie.id}
                         className="listing-card cursor-pointer"
                         onClick={() => onCardClickHandler(movie.id)}
                       >
@@ -131,8 +130,10 @@ export default function ListingCard() {
                             {movie.vote_average}
                           </div>
                         </div>
-                        <div className="listing-description">
-                          {movie.overview}
+                        <div className="desc-info-container">
+                          <span className="clamped-text">
+                            {movie.overview}
+                          </span>
                         </div>
                       </div>
                     );
@@ -141,22 +142,20 @@ export default function ListingCard() {
                   <p>NO MOVIE FOUND</p>
                 )}
               </div>
-              {
-                !clickedSearchTerm && 
+              {!clickedSearchTerm && (
                 <div className="pagination-btns-container">
-                <PrimaryBtn
-                  btnText="Previous"
-                  onClick={onPaginationBtnClickHandler}
-                  id="prviousBtn"
-                ></PrimaryBtn>
-                <PrimaryBtn
-                  btnText="Next"
-                  onClick={onPaginationBtnClickHandler}
-                  id="nextBtn"
-                ></PrimaryBtn>
-              </div>
-              }
-       
+                  <PrimaryBtn
+                    btnText="Previous"
+                    onClick={onPaginationBtnClickHandler}
+                    id="prviousBtn"
+                  ></PrimaryBtn>
+                  <PrimaryBtn
+                    btnText="Next"
+                    onClick={onPaginationBtnClickHandler}
+                    id="nextBtn"
+                  ></PrimaryBtn>
+                </div>
+              )}
             </div>
           ) : (
             <p>DATA NOT FOUND</p>

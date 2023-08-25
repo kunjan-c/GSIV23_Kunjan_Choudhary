@@ -6,16 +6,17 @@
 }
 
 .detail-page-container .mov-poster {
-  width: 20%;
+  width: 25%;
   height: 250px;
 }
 .detail-page-container .movie-details-container {
     padding: 15px;
     width: 75%;
+    min-height: 250px;
 }
-/* .detail-page-container .movie-details-container .mov-detail-title{
+.detail-page-container .movie-details-container .mov-detail-title{
 color: var(--gray);
-} */
+}
 
 .detail-page-container .movie-details-container .details-rating-text{
   color: var(--lightGray);
