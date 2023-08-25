@@ -141,7 +141,9 @@ export default function ListingCard() {
                   <p>NO MOVIE FOUND</p>
                 )}
               </div>
-              <div className="pagination-btns-container">
+              {
+                !clickedSearchTerm && 
+                <div className="pagination-btns-container">
                 <PrimaryBtn
                   btnText="Previous"
                   onClick={onPaginationBtnClickHandler}
@@ -153,6 +155,8 @@ export default function ListingCard() {
                   id="nextBtn"
                 ></PrimaryBtn>
               </div>
+              }
+       
             </div>
           ) : (
             <p>DATA NOT FOUND</p>
