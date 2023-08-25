@@ -3,17 +3,17 @@
   "name": "GsyngergyKunjan23",
   "icons": [
     {
-      "src": "Gsyngergy_logo.jpeg",
+      "src": "gsynergy_sqare.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "Gsyngergy_logo.jpeg",
+      "src": "gsynergy_sqare.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "Gsyngergy_logo.jpeg",
+      "src": "gsynergy_sqare.png",
       "type": "image/png",
       "sizes": "512x512"
     }
