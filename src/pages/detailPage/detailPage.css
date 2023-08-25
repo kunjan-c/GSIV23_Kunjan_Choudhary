@@ -63,14 +63,3 @@
   .mov-second-line-details {
   padding: 10px;
 }
-@media only screen and (max-width: 600px) {
-  .detail-page-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .detail-page-container .mov-poster {
-    width: 100vw;
-    height: 50vh;
-  }
-}
