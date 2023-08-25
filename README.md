@@ -29,6 +29,10 @@ then run npm start
 Created reusable and customizable components to avoid repetitive HTML code.
 Components include header, buttons, loader, and a search bar.
 
+* Secure Configuration:
+Stored sensitive information such as authentication keys and tokens in a .env file.
+This approach enhances security by keeping private data separate from the source code.
+
 * Routing:
 Implemented basic routing for navigation using react-router library.
 
@@ -44,7 +48,6 @@ Implemented error handling using logs and warnings for effective troubleshooting
 
 * Helper Functions:
 Organized a dedicated helper folder to store reusable functions and data.
-
 
 
 
