@@ -34,7 +34,7 @@ color: var(--gray);
 .detail-page-container .movie-details-container .mov-detail-title{
 font-size: 20px;
 }
-.mov-info-gray{
+.detail-page-container .movie-details-container .mov-info-gray{
   color: var(--gray);
 }
 .detail-page-container .movie-details-container .mov-info .divider-line{
