@@ -75,3 +75,17 @@ padding: 5px;
   justify-content: center;
   margin: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .listing-cards-container .listing-card {
+
+    width: 300px;
+    min-height: 400px;
+    margin-bottom: 45px;
+  }
+  
+  .listing-cards-container .listing-card .listing-poster {
+    min-height: 300px;
+
+  }
+}

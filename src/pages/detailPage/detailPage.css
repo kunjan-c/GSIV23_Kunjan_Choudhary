@@ -10,15 +10,15 @@
   height: 250px;
 }
 .detail-page-container .movie-details-container {
-    padding: 15px;
-    width: 75%;
-    min-height: 250px;
+  padding: 15px;
+  width: 75%;
+  min-height: 250px;
 }
-.detail-page-container .movie-details-container .mov-detail-title{
-color: var(--gray);
+.detail-page-container .movie-details-container .mov-detail-title {
+  color: var(--gray);
 }
 
-.detail-page-container .movie-details-container .details-rating-text{
+.detail-page-container .movie-details-container .details-rating-text {
   color: var(--lightGray);
   padding: 0px 10px;
   font-size: 20px;
@@ -28,16 +28,14 @@ color: var(--gray);
   justify-content: flex-start;
   font-size: 18px;
   padding: 5px;
-
-
 }
-.detail-page-container .movie-details-container .mov-detail-title{
-font-size: 20px;
+.detail-page-container .movie-details-container .mov-detail-title {
+  font-size: 20px;
 }
-.detail-page-container .movie-details-container .mov-info-gray{
+.detail-page-container .movie-details-container .mov-info-gray {
   color: var(--gray);
 }
-.detail-page-container .movie-details-container .mov-info .divider-line{
+.detail-page-container .movie-details-container .mov-info .divider-line {
   font-size: 25px;
   font-weight: 500;
   padding: 3px;
@@ -59,6 +57,20 @@ font-size: 20px;
   justify-content: space-between;
   min-width: 300px;
 }
-.detail-page-container .movie-details-container .mov-info .mov-second-line-details {
+.detail-page-container
+  .movie-details-container
+  .mov-info
+  .mov-second-line-details {
   padding: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .detail-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .detail-page-container .mov-poster {
+    width: 100vw;
+    height: 50vh;
+  }
 }
