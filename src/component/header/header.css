@@ -1,0 +1,27 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  border-bottom: 2px solid var(--lightGray);
+  padding: 2px 10px;
+}
+.header-container .header-home-icon {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--gray);
+  font-variation-settings: "FILL" 1;
+}
+.header-container .material-icons.md-30 {
+  font-size: 30px;
+}
+.header-container .movie-detail-text-head {
+  font-size: 20px;
+}
+.header-container .movie-detail-header-content {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  justify-content: space-between;
+}
