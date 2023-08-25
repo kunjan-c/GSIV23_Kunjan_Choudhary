@@ -1,17 +1,18 @@
 .detail-page-container {
   display: flex;
   flex-direction: row;
-  width: 95%;
+  width: 98%;
   overflow: hidden;
 }
 
 .detail-page-container .mov-poster {
-  width: 25%;
-  height: auto;
+  width: 30%;
+  height: 300px;
+  object-fit: fill;
 }
 .detail-page-container .movie-details-container {
-  padding: 15px;
-  width: 75%;
+  padding: 20px;
+  width: 60%;
   min-height: 250px;
 }
 .detail-page-container .movie-details-container .mov-detail-title {
