@@ -16,6 +16,12 @@
 .header-container .material-icons.md-30 {
   font-size: 30px;
 }
-.header-container .movie-detail-text-head{
-font-size: 20px;
+.header-container .movie-detail-text-head {
+  font-size: 20px;
+}
+.header-container .movie-detail-header-content {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  justify-content: space-between;
 }

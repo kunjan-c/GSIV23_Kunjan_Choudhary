@@ -1,6 +1,7 @@
 import React from "react";
 import "./searchBar.css";
-export default function SearchBar({ onKeyDown }) {
+export default function SearchBar({ onKeyDown,onChange }) {
+  console.log("test");
   return (
     <div className="search-bar-container">
       <span className="material-symbols-outlined search-icon material-icons">
@@ -11,6 +12,7 @@ export default function SearchBar({ onKeyDown }) {
         type="text"
         placeholder="Search"
         onKeyDown={onKeyDown}
+        onChange={onChange}
       ></input>
     </div>
   );

@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialDataState = {
   listData: [],
-  searchTermValue: "",
+  searchTermValue: null,
   clickedCardId : "",
+  currentListingPage: 1,
 };
 
 const genralSlice = createSlice({
@@ -18,6 +19,7 @@ const genralSlice = createSlice({
     clickedCardId(state, action) {
       state.clickedCardId = action.payload;
     },
+  
   },
 });
 

@@ -7,25 +7,16 @@ import { genralSiceActions } from "redux/store";
 import { useNavigate } from "react-router";
 
 export default function ListingCard() {
+  const [pagination, setPagination] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const clickedSearchTerm  = useSelector((state) => state.data.searchTermValue);
-  console.log(clickedSearchTerm);
-  const listData  = useSelector((state) => state.data.listData);
-  
+  console.log("test1");
+  const clickedSearchTerm = useSelector((state) => state.data.searchTermValue);
   const [isLoading, setIsLoading] = useState(false);
   const [upcomingMovieList, setUpcomingMovieList] = useState([]);
-  const [pagination, setPagination] = useState(1);
-  useEffect(() => {
-    getUpcomingMovieList();
-  }, [pagination]);
-
-  useEffect(()=>{
-    getSearchedTermData()
-  },[clickedSearchTerm])
 
 
-
+  //this fn will call API and fetch upcoming movie data
   async function getUpcomingMovieList() {
     setIsLoading(true);
     try {
@@ -45,7 +36,7 @@ export default function ListingCard() {
         .then((jsonRes) => {
           console.log(jsonRes);
           setUpcomingMovieList(jsonRes.results);
-          dispatch(genralSiceActions.listData(jsonRes.results));
+          // dispatch(genralSiceActions.listData(jsonRes.results));
           setIsLoading(false);
           return jsonRes;
         });
@@ -56,7 +47,22 @@ export default function ListingCard() {
     }
   }
 
-  //this will show Search Term Related Data
+  useEffect(() => {
+    console.log("here");
+    getUpcomingMovieList();
+  }, [pagination]);
+
+  useEffect(()=>{
+    if (clickedSearchTerm) {
+      getSearchedTermData();
+    }else if(clickedSearchTerm === ""){
+      console.log("is this");
+      getUpcomingMovieList();
+      setPagination(1);
+    }
+  },[clickedSearchTerm])
+
+  //this fn will featch show Search Term Related movie Data
   async function getSearchedTermData() {
     setIsLoading(true);
     try {
@@ -75,8 +81,8 @@ export default function ListingCard() {
         .then((jsonRes) => {
           console.log(jsonRes);
           setIsLoading(false);
-          // setUpcomingMovieList(jsonRes.results);
-          // dispatch(genralSiceActions.listData(jsonRes.results));
+          setUpcomingMovieList(jsonRes.results);
+          dispatch(genralSiceActions.listData(jsonRes.results));
           return jsonRes;
         });
     } catch (error) {
@@ -86,57 +92,78 @@ export default function ListingCard() {
     }
   }
 
-
-  //this will handle pagination update
+  //this fn will handle pagination update
   const onPaginationBtnClickHandler = (e) => {
     if (e.target.id === "nextBtn") {
       setPagination((pagination) => pagination + 1);
     } else if (pagination > 1) {
       setPagination((pagination) => pagination - 1);
     }
+    dispatch(genralSiceActions.listData([]));
   };
 
+  //this fn will pass card click id to fetch movie detail
   const onCardClickHandler = (id) => {
     console.log(id);
     dispatch(genralSiceActions.clickedCardId(id));
-    navigate("detail-page")
-  }
+    navigate("detail-page");
+  };
+
   return (
-    <>
-      <div className="listing-cards-container">
-        {isLoading ? (
-          <Loader></Loader>
-        ) : (
-          upcomingMovieList.map((movie) => {
-            return (
-              <div className="listing-card" onClick={()=>onCardClickHandler(movie.id)}>
-                <img
-                  className="listing-poster"
-                  src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                ></img>
-                <div className="title-rating-container">
-                  <div className="listing-title">{movie.title}</div>
-                  <div className="listing-ratings">{movie.vote_average}</div>
-                </div>
-                <div className="listing-description">{movie.overview}</div>
+    <div>
+      {isLoading ? (
+        <Loader></Loader>
+      ) : (
+        <div>
+          {upcomingMovieList.length ? (
+            <div>
+              <div className="listing-cards-container">
+                {upcomingMovieList.length ? (
+                  upcomingMovieList.map((movie) => {
+                    return (
+                      <div
+                        className="listing-card cursor-pointer"
+                        onClick={() => onCardClickHandler(movie.id)}
+                      >
+                        <img
+                          className="listing-poster"
+                          src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                          alt={movie.title}
+                        ></img>
+                        <div className="title-rating-container">
+                          <div className="listing-title">{movie.title}</div>
+                          <div className="listing-ratings">
+                            {movie.vote_average}
+                          </div>
+                        </div>
+                        <div className="listing-description">
+                          {movie.overview}
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p>NO MOVIE FOUND</p>
+                )}
               </div>
-            );
-          })
-        )}
-      </div>
-      <div className="pagination-btns-container">
-        <PrimaryBtn
-          btnText="Previous"
-          onClick={onPaginationBtnClickHandler}
-          id="prviousBtn"
-        ></PrimaryBtn>
-        <PrimaryBtn
-          btnText="Next"
-          onClick={onPaginationBtnClickHandler}
-          id="nextBtn"
-        ></PrimaryBtn>
-      </div>
-    </>
+              <div className="pagination-btns-container">
+                <PrimaryBtn
+                  btnText="Previous"
+                  onClick={onPaginationBtnClickHandler}
+                  id="prviousBtn"
+                ></PrimaryBtn>
+                <PrimaryBtn
+                  btnText="Next"
+                  onClick={onPaginationBtnClickHandler}
+                  id="nextBtn"
+                ></PrimaryBtn>
+              </div>
+            </div>
+          ) : (
+            <p>DATA NOT FOUND</p>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
