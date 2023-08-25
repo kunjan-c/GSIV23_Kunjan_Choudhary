@@ -6,12 +6,12 @@
 }
 
 .detail-page-container .mov-poster {
-  width: 25%;
+  width: 35%;
   height: auto;
 }
 .detail-page-container .movie-details-container {
   padding: 15px;
-  width: 75%;
+  width: 60%;
   min-height: 250px;
 }
 .detail-page-container .movie-details-container .mov-detail-title {
