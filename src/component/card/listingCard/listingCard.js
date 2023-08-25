@@ -45,7 +45,9 @@ export default function ListingCard() {
       )
         .then((res) => res.json())
         .then((jsonRes) => {
-          setUpcomingMovieList(jsonRes.results);
+          console.log(jsonRes.results);
+          const sortedMovieDataByLatestReleaseDate = jsonRes.results.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+          setUpcomingMovieList(sortedMovieDataByLatestReleaseDate);
           dispatch(genralSiceActions.listData(jsonRes.results));
           setIsLoading(false);
           return jsonRes;
@@ -107,10 +109,10 @@ export default function ListingCard() {
         <Loader></Loader>
       ) : (
         <div>
-          {upcomingMovieList.length ? (
+          {upcomingMovieList?.length ? (
             <div>
               <div className="listing-cards-container">
-                {upcomingMovieList.length ? (
+                {upcomingMovieList?.length ? (
                   upcomingMovieList.map((movie) => {
                     return (
                       <div
