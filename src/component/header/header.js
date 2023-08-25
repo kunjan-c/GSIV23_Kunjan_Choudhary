@@ -10,7 +10,7 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showSearchBar, setShowSearchBar] = useState(true);
-console.log("testing");
+
   useEffect(() => {
     if (location.pathname === "/detail-page") {
       setShowSearchBar(false);
@@ -42,7 +42,7 @@ console.log("testing");
         ></SearchBar>
       ) : (
         <div className="movie-detail-header-content">
-          <span onClick={navigateHomePage} class="material-symbols-outlined cursor-pointer">
+          <span onClick={navigateHomePage} className="material-symbols-outlined cursor-pointer">
             arrow_back
           </span>
 

@@ -5,19 +5,28 @@ import { useSelector } from "react-redux";
 import minsToHrConverter from "helper/minsToHrConverter";
 import { useNavigate } from "react-router";
 import Loader from "component/loader/loader";
+import { genralSiceActions } from "redux/store";
 
 export default function DetailPage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [clickedCardMovieDetail, setClickedCardMovieDetail] = useState({});
   const clickedCardId = useSelector((state) => state.data.clickedCardId);
+
+  useEffect(() => {
+    if (clickedCardId) {
+      getClickedMovieCardDetail();
+    } else {
+      navigate("/");
+    }
+  }, [clickedCardId]);
+
+
+  //This Fn will Call API with movie ID to fetch specific movie detail
   async function getClickedMovieCardDetail() {
     setIsLoading(true);
     try {
-      const listingKey = `${process.env.REACT_APP_LISTING_API_KEY}`;
-      console.log(listingKey);
       const getData = await fetch(
-        // `https://api.themoviedb.org/3/movie/${clickedCardId}?api_key=${process.env.REACT_APP_LISTING_API_KEY}`,
         `https://api.themoviedb.org/3/movie/${clickedCardId}?api_key=${process.env.REACT_APP_LISTING_API_KEY}&append_to_response=credits`,
         {
           method: "GET",
@@ -31,8 +40,6 @@ export default function DetailPage() {
         .then((jsonRes) => {
           console.log(jsonRes);
           setClickedCardMovieDetail(jsonRes);
-          // setUpcomingMovieList(jsonRes.results);
-          // dispatch(genralSiceActions.listData(jsonRes.results));
           setIsLoading(false);
           return jsonRes;
         });
@@ -43,13 +50,7 @@ export default function DetailPage() {
     }
   }
 
-  useEffect(() => {
-    if (clickedCardId) {
-      getClickedMovieCardDetail();
-    } else {
-      navigate("/");
-    }
-  }, [clickedCardId]);
+
 
   return (
     <>
@@ -90,7 +91,7 @@ export default function DetailPage() {
                     </span>
                   </div>
                 </div>
-                <div className=" cast-name">
+                <div className="cast-name">
                   {`Cast :${clickedCardMovieDetail?.credits?.cast.map((c) => {
                     return c.name;
                   })}`}{" "}

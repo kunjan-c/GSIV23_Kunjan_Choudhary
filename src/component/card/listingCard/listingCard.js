@@ -10,18 +10,29 @@ export default function ListingCard() {
   const [pagination, setPagination] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("test1");
-  const clickedSearchTerm = useSelector((state) => state.data.searchTermValue);
   const [isLoading, setIsLoading] = useState(false);
   const [upcomingMovieList, setUpcomingMovieList] = useState([]);
+  const clickedSearchTerm = useSelector((state) => state.data.searchTermValue);
+
+
+  useEffect(() => {
+    getUpcomingMovieList();
+  }, [pagination]);
+
+  useEffect(() => {
+    if (clickedSearchTerm) {
+      getSearchedTermData();
+    } else if (clickedSearchTerm === "") {
+      getUpcomingMovieList();
+      setPagination(1);
+    }
+  }, [clickedSearchTerm]);
 
 
   //this fn will call API and fetch upcoming movie data
   async function getUpcomingMovieList() {
     setIsLoading(true);
     try {
-      const listingKey = `${process.env.REACT_APP_LISTING_API_KEY}`;
-      console.log(listingKey);
       const getData = await fetch(
         `https://api.themoviedb.org/3/movie/upcoming?page=${pagination}`,
         {
@@ -34,9 +45,8 @@ export default function ListingCard() {
       )
         .then((res) => res.json())
         .then((jsonRes) => {
-          console.log(jsonRes);
           setUpcomingMovieList(jsonRes.results);
-          // dispatch(genralSiceActions.listData(jsonRes.results));
+          dispatch(genralSiceActions.listData(jsonRes.results));
           setIsLoading(false);
           return jsonRes;
         });
@@ -47,27 +57,11 @@ export default function ListingCard() {
     }
   }
 
-  useEffect(() => {
-    console.log("here");
-    getUpcomingMovieList();
-  }, [pagination]);
-
-  useEffect(()=>{
-    if (clickedSearchTerm) {
-      getSearchedTermData();
-    }else if(clickedSearchTerm === ""){
-      console.log("is this");
-      getUpcomingMovieList();
-      setPagination(1);
-    }
-  },[clickedSearchTerm])
-
   //this fn will featch show Search Term Related movie Data
   async function getSearchedTermData() {
     setIsLoading(true);
     try {
-      const listingKey = `${process.env.REACT_APP_LISTING_API_KEY}`;
-      console.log(listingKey);
+    
       const getData = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${clickedSearchTerm}&api_key=${process.env.REACT_APP_LISTING_API_KEY}`,
         {
@@ -99,12 +93,10 @@ export default function ListingCard() {
     } else if (pagination > 1) {
       setPagination((pagination) => pagination - 1);
     }
-    dispatch(genralSiceActions.listData([]));
   };
 
   //this fn will pass card click id to fetch movie detail
   const onCardClickHandler = (id) => {
-    console.log(id);
     dispatch(genralSiceActions.clickedCardId(id));
     navigate("detail-page");
   };
@@ -122,6 +114,7 @@ export default function ListingCard() {
                   upcomingMovieList.map((movie) => {
                     return (
                       <div
+                      key={movie.id}
                         className="listing-card cursor-pointer"
                         onClick={() => onCardClickHandler(movie.id)}
                       >
