@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 
 export default function ListingCard() {
   const [pagination, setPagination] = useState(1);
+  // const [pagination, setPagination] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -15,15 +16,19 @@ export default function ListingCard() {
   const clickedSearchTerm = useSelector((state) => state.data.searchTermValue);
 
   useEffect(() => {
-    getUpcomingMovieList();
+    if (clickedSearchTerm) {
+      getSearchedTermData();
+    } else if (clickedSearchTerm === "" || clickedSearchTerm === null) {
+      getUpcomingMovieList();
+    }
   }, [pagination]);
 
   useEffect(() => {
-    if (clickedSearchTerm) {
+    setPagination(1);
+    if (pagination == 1 && clickedSearchTerm) {
       getSearchedTermData();
     } else if (clickedSearchTerm === "") {
       getUpcomingMovieList();
-      setPagination(1);
     }
   }, [clickedSearchTerm]);
 
@@ -64,7 +69,7 @@ export default function ListingCard() {
     setIsLoading(true);
     try {
       const getData = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${clickedSearchTerm}&api_key=${process.env.REACT_APP_LISTING_API_KEY}`,
+        `https://api.themoviedb.org/3/search/movie?query=${clickedSearchTerm}&api_key=${process.env.REACT_APP_LISTING_API_KEY}&page=${pagination}`,
         {
           method: "GET",
           headers: {
@@ -131,9 +136,7 @@ export default function ListingCard() {
                           </div>
                         </div>
                         <div className="desc-info-container">
-                          <span className="clamped-text">
-                            {movie.overview}
-                          </span>
+                          <span className="clamped-text">{movie.overview}</span>
                         </div>
                       </div>
                     );
@@ -142,20 +145,19 @@ export default function ListingCard() {
                   <p>NO MOVIE FOUND</p>
                 )}
               </div>
-              {!clickedSearchTerm && (
-                <div className="pagination-btns-container">
-                  <PrimaryBtn
-                    btnText="Previous"
-                    onClick={onPaginationBtnClickHandler}
-                    id="prviousBtn"
-                  ></PrimaryBtn>
-                  <PrimaryBtn
-                    btnText="Next"
-                    onClick={onPaginationBtnClickHandler}
-                    id="nextBtn"
-                  ></PrimaryBtn>
-                </div>
-              )}
+
+              <div className="pagination-btns-container">
+                <PrimaryBtn
+                  btnText="Previous"
+                  onClick={onPaginationBtnClickHandler}
+                  id="prviousBtn"
+                ></PrimaryBtn>
+                <PrimaryBtn
+                  btnText="Next"
+                  onClick={onPaginationBtnClickHandler}
+                  id="nextBtn"
+                ></PrimaryBtn>
+              </div>
             </div>
           ) : (
             <p>DATA NOT FOUND</p>
